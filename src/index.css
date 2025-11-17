@@ -1,0 +1,137 @@
+/* -------------------------------------------------- */
+/* Tailwind Import                                     */
+/* -------------------------------------------------- */
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+
+/* -------------------------------------------------- */
+/* Base Styling                                        */
+/* -------------------------------------------------- */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter',sans-serif;
+  @apply  text-gray-900 dark:text-gray-100 transition-colors duration-300;
+  --scroll-offset: 0px;
+}
+
+/* -------------------------------------------------- */
+/* Scroll-Reactive Grid Background (Light Mode)        */
+/* -------------------------------------------------- */
+body {
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+    #f9fafb;
+  background-size: 40px 40px;
+  background-position-y: var(--scroll-offset);
+}
+
+/* -------------------------------------------------- */
+/* Scroll-Reactive Grid Background (Dark Mode)         */
+/* -------------------------------------------------- */
+.dark body {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    #0f0f0f;
+  background-size: 40px 40px;
+  background-position-y: var(--scroll-offset);
+}
+
+/* -------------------------------------------------- */
+/* Modern Scrollbar                                    */
+/* -------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(120, 120, 120, 0.35);
+  border-radius: 12px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(160, 160, 160, 0.5);
+}
+
+/* -------------------------------------------------- */
+/* Text Selection                                      */
+/* -------------------------------------------------- */
+::selection {
+  background: rgba(99, 102, 241, 0.5); /* Indigo-500 */
+  color: white;
+}
+
+/* -------------------------------------------------- */
+/* Fade-In Utility                                     */
+/* -------------------------------------------------- */
+.fade-in {
+  animation: fadeIn 0.6s ease-out both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* -------------------------------------------------- */
+/* Smooth Utility                                      */
+/* -------------------------------------------------- */
+.smooth {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+/* -------------------------------------------------- */
+/* Section Scroll Offset (Fix for navbar overlap)      */
+/* -------------------------------------------------- */
+section {
+  @apply scroll-mt-24;
+}
+
+/* -------------------------------------------------- */
+/* Hologram Glitch Effect (Used in hero if needed)     */
+/* -------------------------------------------------- */
+.hologram-effect {
+  position: relative;
+}
+
+.hologram-effect::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 2px;
+  top: 0;
+  color: rgba(255, 0, 80, 0.25);
+  mix-blend-mode: screen;
+  animation: glitch 1.8s infinite;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0, 0); opacity: 0.3; }
+  20% { transform: translate(3px, -2px); opacity: 1; }
+  40% { transform: translate(-3px, 2px); opacity: 0.7; }
+  60% { transform: translate(2px, -1px); opacity: 0.9; }
+  80% { transform: translate(-2px, 1px); opacity: 0.6; }
+  100% { transform: translate(0, 0); opacity: 0.3; }
+}
+
+/* -------------------------------------------------- */
+/* Pixel Flicker Effect (subtle ambient glow)          */
+/* -------------------------------------------------- */
+.animate-flicker {
+  animation: flicker 2.8s infinite ease-in-out;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.2; }
+}
+
+/* -------------------------------------------------- */
+/* Done                                                */
+/* -------------------------------------------------- */
