@@ -109,7 +109,7 @@ function Hero() {
         {/* ⭐ Resume Button */}
         <motion.a
           whileHover={{ scale: 1.07 }}
-          href="/Manav_khandelwal.pdf"
+          href="/Manav_Khandelwal.pdf"
           target="_blank"
           className="
             px-7 py-3 rounded-xl font-semibold 
