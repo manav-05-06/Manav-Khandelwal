@@ -1,13 +1,32 @@
-# React + Vite
+# Manav-Khandelwal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Introduction  
+This repository contains the source code for my personal website / portfolio built with React and Vite. It showcases my skills, projects and professional profile in a clean, modern single-page application.
 
-Currently, two official plugins are available:
+## Table of Contents  
+- [Features](#features)  
+- [Demo](#demo)  
+- [Installation](#installation)  
+- [Usage](#usage)  
+- [Dependencies](#dependencies)  
+- [Configuration](#configuration)  
+- [Folder Structure](#folder-structure)  
+- [Contributing](#contributing)  
+- [Troubleshooting](#troubleshooting)  
+- [License](#license)  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features  
+- Built with [React](https://reactjs.org) + [Vite](https://vitejs.dev) — fast, lightweight and modern.  
+- Tailwind CSS for styling; responsive across devices.  
+- ESLint configuration in place for consistent code-quality.  
+- Deployed (live) via [Vercel](https://vercel.com) (URL: https://manav-khandelwal.vercel.app) ← your live site link.  
+- Easy to customize / extend to add new sections (blog, projects, testimonials, etc).  
 
-## Expanding the ESLint configuration
+## Demo  
+Visit the live version: [manav-khandelwal.vercel.app](https://manav-khandelwal.vercel.app)  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# Manav
+## Installation  
+1. Clone the repository  
+   ```bash  
+   git clone https://github.com/manav-05-06/Manav-Khandelwal.git  
+   cd Manav-Khandelwal  
