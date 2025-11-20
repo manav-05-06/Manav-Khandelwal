@@ -10,7 +10,7 @@ import ScrollSpy from "./components/ScrollSpy";
 import AnimatedCursor from "./components/AnimatedCursor";
 import ScrollProgressNav from "./components/ScrollProgressNav";
 
-import "./index.css";
+import "./index.css"
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
