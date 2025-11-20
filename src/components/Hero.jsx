@@ -40,91 +40,110 @@ function Hero() {
       id="hero"
       className="relative min-h-screen flex flex-col justify-center items-center text-center px-6 overflow-hidden"
     >
-      {/* Background blur blobs */}
+      {/* Background Blurs */}
       <div className="absolute w-[450px] h-[450px] bg-indigo-400/20 blur-[140px] rounded-full top-20 left-1/4" />
       <div className="absolute w-[450px] h-[450px] bg-violet-500/20 blur-[140px] rounded-full bottom-20 right-1/4" />
 
-      {/* Title */}
+      {/* ===================== REVEAL: NAME ===================== */}
       <motion.h1
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="
-          text-5xl md:text-7xl font-extrabold tracking-tight
-          text-gray-900 dark:text-gray-100
-        "
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.8 }}
+        className="text-5xl md:text-7xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100"
       >
         Manav Khandelwal
       </motion.h1>
 
       {/* Underline */}
       <motion.div
-        initial={{ width: 0 }}
-        animate={{ width: "140px" }}
-        transition={{ duration: 0.8 }}
+        initial={{ width: 0, opacity: 0 }}
+        whileInView={{ width: "140px", opacity: 1 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.8, delay: 0.1 }}
         className="h-[3px] rounded-full bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500 mt-3 mb-6"
       />
 
-      {/* Typing animation */}
+      {/* ===================== REVEAL: ROLES ===================== */}
       <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.8, delay: 0.15 }}
         className="text-lg md:text-2xl text-gray-600 dark:text-gray-300 h-10"
       >
         {currentText}
         <span className="border-r-2 border-indigo-500 animate-pulse ml-1" />
       </motion.p>
 
-      {/* Buttons */}
-      <div className="flex flex-wrap gap-4 mt-10 justify-center">
+      {/* ===================== REVEAL: BUTTONS ===================== */}
+      <motion.div
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, delay: 0.25 }}
+        className="flex flex-wrap gap-4 mt-10 justify-center"
+      >
         {/* View My Work */}
-        <motion.a
-          whileHover={{ scale: 1.07 }}
-          href="#projects"
+        <motion.button
+          whileHover={{ scale: 1.08 }}
+          onClick={() => (window.location.href = "#projects")}
           className="
-            px-7 py-3 rounded-xl font-semibold 
-            bg-indigo-600 text-white 
-            hover:bg-indigo-700 transition-all shadow-lg
+            px-7 py-3 rounded-xl font-medium
+            bg-gray-900 text-white dark:bg-white dark:text-black
+            transition-all duration-300 relative overflow-hidden
+            shadow-sm hover:shadow-md group
           "
         >
-          View My Work
-        </motion.a>
+          <span className="relative z-10">View My Work</span>
+          <span className="absolute inset-x-0 bottom-0 h-[2px] bg-white dark:bg-black scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
+        </motion.button>
 
         {/* Contact */}
-        <motion.a
-          whileHover={{ scale: 1.07 }}
-          href="#contact"
+        <motion.button
+          whileHover={{ scale: 1.08 }}
+          onClick={() => (window.location.href = "#contact")}
           className="
-            px-7 py-3 rounded-xl font-semibold border
-            border-gray-400 dark:border-gray-600
-            bg-white/20 dark:bg-black/20 backdrop-blur-md
-            hover:bg-white/30 dark:hover:bg-gray-900/40 
-            transition-all
+            px-7 py-3 rounded-xl font-medium
+            border border-gray-600 dark:border-gray-400
+            text-gray-800 dark:text-gray-200
+            hover:bg-gray-100 dark:hover:bg-gray-800
+            transition-all duration-300 shadow-sm hover:shadow-md
+            relative overflow-hidden group
           "
         >
-          Contact Me
-        </motion.a>
+          <span className="relative z-10">Contact Me</span>
+          <span className="absolute inset-x-0 bottom-0 h-[2px] bg-gray-400 dark:bg-gray-300 scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
+        </motion.button>
 
-        {/* ⭐ Resume Button */}
+        {/* Resume */}
         <motion.a
-          whileHover={{ scale: 1.07 }}
+          whileHover={{ scale: 1.08 }}
           href="/Manav.pdf"
           target="_blank"
           className="
-            px-7 py-3 rounded-xl font-semibold 
-            bg-gradient-to-r from-purple-500 to-indigo-500 
-            text-white shadow-lg
-            hover:from-purple-600 hover:to-indigo-600 
-            transition-all
+            px-7 py-3 rounded-xl font-medium
+            bg-gray-100 dark:bg-gray-800
+            text-gray-900 dark:text-gray-100
+            border border-gray-300 dark:border-gray-700
+            hover:bg-gray-200 dark:hover:bg-gray-700
+            transition-all duration-300 shadow-sm hover:shadow-md
+            relative overflow-hidden group
           "
         >
-          Resume
+          <span className="relative z-10">Resume</span>
+          <span className="absolute inset-x-0 bottom-0 h-[2px] bg-gray-500 dark:bg-gray-300 scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
         </motion.a>
-      </div>
+      </motion.div>
 
-      {/* Social Icons */}
-      <div className="flex gap-6 text-3xl mt-12">
+      {/* ===================== REVEAL: SOCIAL ICONS ===================== */}
+      <motion.div
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, delay: 0.35 }}
+        className="flex gap-6 text-3xl mt-12"
+      >
         {[
           { Icon: FaGithub, href: "https://github.com/manav-05-06" },
           { Icon: FaLinkedin, href: "https://www.linkedin.com/in/manav178892250/" },
@@ -146,12 +165,15 @@ function Hero() {
             <Icon />
           </motion.a>
         ))}
-      </div>
+      </motion.div>
 
-      {/* Down Arrow */}
+      {/* ===================== REVEAL: DOWN ARROW ===================== */}
       <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, delay: 0.45 }}
         animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
         className="mt-20 text-gray-500 dark:text-gray-400"
       >
         <span className="text-3xl">↓</span>

@@ -1,3 +1,4 @@
+// Contact.jsx
 import { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -7,6 +8,7 @@ function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("Sending...");
+
     const data = new FormData(e.target);
 
     const res = await fetch("https://formspree.io/f/xovlvnlr", {
@@ -19,46 +21,44 @@ function Contact() {
       setStatus("Message sent successfully!");
       e.target.reset();
     } else {
-      setStatus("Failed to send message. Please try again.");
+      setStatus("Failed to send message. Try again.");
     }
   };
 
   return (
     <section
       id="contact"
-      className="
-        font-mono max-w-3xl mx-auto px-6 py-24 relative
-      "
+      className="max-w-3xl mx-auto px-6 py-28 relative"
     >
-      {/* Soft gradient blur glow behind form */}
+      {/* Soft ambient glow background */}
       <div className="
         absolute inset-0 mx-auto max-w-xl
         bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10
-        blur-[120px] rounded-full
-        -z-10
+        blur-[140px] rounded-full -z-10
       " />
 
       {/* Heading */}
       <motion.h2
-        initial={{ opacity: 0, y: -10 }}
+        initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.5 }}
         viewport={{ once: true }}
         className="
-          text-4xl font-bold text-center mb-8
-          text-white
-          bg-clip-text text-transparent
+          text-4xl md:text-5xl font-bold text-center mb-12
+          text-gray-900 dark:text-gray-100 relative w-fit mx-auto
         "
       >
         Let’s Connect
+        <span className="absolute left-1/2 -bottom-4 -translate-x-1/2 w-32 h-[3px] rounded-full 
+          bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500"></span>
       </motion.h2>
 
-      <p className="text-center mb-10 text-gray-700 dark:text-gray-400 leading-relaxed">
-        Have a question, idea, or collaboration in mind?
+      <p className="text-center mb-12 text-gray-700 dark:text-gray-400 leading-relaxed">
+        Have a question, idea, or want to collaborate?
         <br />
-        I’d love to hear from you.
+        Feel free to drop a message — I'll get back soon.
         <br />
-        <span className="text-indigo-500 font-semibold">
+        <span className="text-indigo-100 dark:text-indigo-300 font-semibold">
           manavkhandelwal72@gmail.com
         </span>
       </p>
@@ -68,20 +68,15 @@ function Contact() {
         onSubmit={handleSubmit}
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
+        transition={{ duration: 0.6 }}
         viewport={{ once: true }}
         className="
-          relative p-8 rounded-3xl
-          bg-white/30 dark:bg-white/5
-          border border-white/20 dark:border-white/10
-          shadow-[0_8px_40px_rgba(0,0,0,0.1)]
-          backdrop-blur-2xl
-          space-y-6
+          relative p-8 rounded-3xl 
+          glass border border-white/20 dark:border-white/10
+          shadow-[0_8px_40px_rgba(0,0,0,0.12)]
+          backdrop-blur-2xl space-y-6
         "
       >
-        {/* Glow behind form edges */}
-        
-
         {/* Name */}
         <motion.input
           whileFocus={{ scale: 1.01 }}
@@ -90,11 +85,10 @@ function Contact() {
           placeholder="Your Name"
           className="
             w-full p-3 rounded-xl outline-none
-            bg-white/40 dark:bg-black/20
-            border border-gray-300/20 dark:border-gray-700
+            bg-white/40 dark:bg-white/10
             text-gray-900 dark:text-gray-100
-            shadow-inner
-            focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/40
+            border border-gray-300/40 dark:border-gray-600/40
+            focus:ring-2 focus:ring-indigo-400/40 focus:border-indigo-400
             transition-all
           "
           required
@@ -108,11 +102,10 @@ function Contact() {
           placeholder="Your Email"
           className="
             w-full p-3 rounded-xl outline-none
-            bg-white/40 dark:bg-black/20
-            border border-gray-300/20 dark:border-gray-700
+            bg-white/40 dark:bg-white/10
             text-gray-900 dark:text-gray-100
-            shadow-inner
-            focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/40
+            border border-gray-300/40 dark:border-gray-600/40
+            focus:ring-2 focus:ring-indigo-400/40 focus:border-indigo-400
             transition-all
           "
           required
@@ -126,26 +119,26 @@ function Contact() {
           rows="4"
           className="
             w-full p-3 rounded-xl outline-none resize-none
-            bg-white/40 dark:bg-black/20
-            border border-gray-300/20 dark:border-gray-700
+            bg-white/40 dark:bg-white/10
             text-gray-900 dark:text-gray-100
-            shadow-inner
-            focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/40
+            border border-gray-300/40 dark:border-gray-600/40
+            focus:ring-2 focus:ring-indigo-400/40 focus:border-indigo-400
             transition-all
           "
           required
-        ></motion.textarea>
+        />
 
         {/* Submit Button */}
         <motion.button
-          whileHover={{ scale: 1.04 }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.96 }}
           type="submit"
           className="
             w-full py-3 rounded-xl font-semibold text-white
-            bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600
-            shadow-xl shadow-indigo-600/30
-            hover:brightness-105 transition-all
+            bg-gray-900 dark:bg-gray-100
+            dark:text-black text-center
+            hover:bg-gray-800 dark:hover:bg-gray-200
+            transition-all duration-300 shadow-sm hover:shadow-lg
           "
         >
           Send Message
@@ -154,7 +147,7 @@ function Contact() {
 
       {/* Status Message */}
       {status && (
-        <p className="mt-5 text-center text-indigo-500 dark:text-indigo-400 font-semibold tracking-wide">
+        <p className="mt-5 text-center text-indigo-600 dark:text-indigo-400 font-semibold">
           {status}
         </p>
       )}

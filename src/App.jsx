@@ -8,9 +8,8 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ScrollSpy from "./components/ScrollSpy";
 import AnimatedCursor from "./components/AnimatedCursor";
-import ScrollProgressNav from "./components/ScrollProgressNav";
 
-import "./index.css"
+import "./index.css";
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -51,7 +50,6 @@ function App() {
   }, []);
 
   return (
-    <div className="font-serif">
     <div className="min-h-screen font-serif text-gray-900 dark:text-gray-100 transition-colors duration-300">
 
       {/* ⭐ Vertical Scroll Progress Bar */}
@@ -65,16 +63,16 @@ function App() {
           transition-all duration-200"
         ></div>
       </div>
-      
-     
-    <AnimatedCursor />
-      <ScrollSpy/>
+
+      <AnimatedCursor />
+      <ScrollSpy />
+
       {/* ⭐ Navbar */}
       <Navbar dark={darkMode} setDark={setDarkMode} />
 
       {/* ⭐ Main Sections */}
       <main>
-        <Hero  />
+        <Hero />
         <About />
         <Skills />
         <Projects />
@@ -83,7 +81,6 @@ function App() {
 
       {/* ⭐ Footer */}
       <Footer />
-    </div>
     </div>
   );
 }

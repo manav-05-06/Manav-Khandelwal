@@ -26,13 +26,13 @@ export default function Projects() {
         initial={{ opacity: 0, y: -10 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="text-4xl font-bold mb-14 text-center underline decoration-blue-500 underline-offset-8"
+        className="text-4xl font-bold mb-14  underline decoration-blue-500 underline-offset-8"
       >
         Projects
       </motion.h2>
 
       {/* Category Filters */}
-      <div className="flex justify-center gap-4 flex-wrap mb-14">
+      <div className="flex gap-4 flex-wrap mb-14">
         {categories.map((cat) => {
           const active = filter === cat;
           return (

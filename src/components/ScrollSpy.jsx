@@ -11,12 +11,13 @@ export default function ScrollSpy() {
 
       sections.forEach((id) => {
         const el = document.getElementById(id);
-        if (el) {
-          const top = el.getBoundingClientRect().top;
+        if (!el) return;
 
-          if (top <= window.innerHeight / 2) {
-            current = id;
-          }
+        const rect = el.getBoundingClientRect();
+        const threshold = window.innerHeight * 0.35;
+
+        if (rect.top <= threshold) {
+          current = id;
         }
       });
 
@@ -30,27 +31,55 @@ export default function ScrollSpy() {
   }, []);
 
   return (
-    <div className="fixed left-6 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-[999]">
+    <div className="
+      fixed left-6 top-1/2 -translate-y-1/2 
+      flex flex-col gap-5 
+      z-[999]
+      pointer-events-none sm:pointer-events-auto
+    ">
       {sections.map((id) => (
         <a
           key={id}
           href={`#${id}`}
-          className="group flex flex-col items-center cursor-pointer"
+          className="group flex flex-col items-center cursor-pointer pointer-events-auto"
         >
+          {/* Dot */}
           <div
             className={`
-              w-3 h-3 rounded-full transition-all duration-300 
-              ${active === id 
-                ? "bg-gradient-to-b from-blue-500 via-indigo-500 to-violet-500 scale-125 shadow-lg shadow-indigo-500/40" 
-                : "bg-gray-400/40 dark:bg-gray-600/40"
+              w-3.5 h-3.5 rounded-full transition-all duration-300
+              relative
+              ${active === id
+                ? `
+                  bg-white 
+                  shadow-[0_0_12px_rgba(255,255,255,0.8)]
+                  scale-125
+                `
+                : `
+                  bg-white/20 dark:bg-white/10
+                  shadow-[0_0_4px_rgba(255,255,255,0.2)]
+                `
               }
             `}
-          ></div>
+          >
+            {/* subtle hover ring */}
+            <div
+              className="
+                absolute inset-0 rounded-full
+                transition-all duration-300 opacity-0
+                group-hover:opacity-40
+                bg-white/20 blur-md
+              "
+            />
+          </div>
 
-          {/* Hover Name Label */}
-          <span className="opacity-0 group-hover:opacity-100 
-            text-xs text-gray-700 dark:text-gray-300 
-            mt-1 transition-all">
+          {/* Label */}
+          <span className="
+            opacity-0 group-hover:opacity-100
+            text-xs mt-1 text-gray-700 dark:text-gray-300 
+            transition-all duration-300 
+            font-medium tracking-wide
+            select-none
+          ">
             {id}
           </span>
         </a>
