@@ -67,7 +67,7 @@ function App() {
       </div>
       
      
-
+    <AnimatedCursor />
       <ScrollSpy/>
       {/* ⭐ Navbar */}
       <Navbar dark={darkMode} setDark={setDarkMode} />

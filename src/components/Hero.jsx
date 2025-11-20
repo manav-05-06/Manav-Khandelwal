@@ -7,7 +7,6 @@ function Hero() {
     "Software Developer",
     "Frontend Engineer",
     "Full-Stack Developer",
-    
   ];
 
   const [currentText, setCurrentText] = useState("");
@@ -41,11 +40,11 @@ function Hero() {
       id="hero"
       className="relative min-h-screen flex flex-col justify-center items-center text-center px-6 overflow-hidden"
     >
-      {/* Soft background blobs */}
+      {/* Background blur blobs */}
       <div className="absolute w-[450px] h-[450px] bg-indigo-400/20 blur-[140px] rounded-full top-20 left-1/4" />
       <div className="absolute w-[450px] h-[450px] bg-violet-500/20 blur-[140px] rounded-full bottom-20 right-1/4" />
 
-      {/* TITLE — clean, modern, NO glow */}
+      {/* Title */}
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -58,7 +57,7 @@ function Hero() {
         Manav Khandelwal
       </motion.h1>
 
-      {/* Thin clean underline */}
+      {/* Underline */}
       <motion.div
         initial={{ width: 0 }}
         animate={{ width: "140px" }}
@@ -66,7 +65,7 @@ function Hero() {
         className="h-[3px] rounded-full bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500 mt-3 mb-6"
       />
 
-      {/* ROLES — typing animation */}
+      {/* Typing animation */}
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -78,7 +77,8 @@ function Hero() {
       </motion.p>
 
       {/* Buttons */}
-      <div className="flex gap-4 mt-10">
+      <div className="flex flex-wrap gap-4 mt-10 justify-center">
+        {/* View My Work */}
         <motion.a
           whileHover={{ scale: 1.07 }}
           href="#projects"
@@ -91,6 +91,7 @@ function Hero() {
           View My Work
         </motion.a>
 
+        {/* Contact */}
         <motion.a
           whileHover={{ scale: 1.07 }}
           href="#contact"
@@ -104,11 +105,27 @@ function Hero() {
         >
           Contact Me
         </motion.a>
+
+        {/* ⭐ Resume Button */}
+        <motion.a
+          whileHover={{ scale: 1.07 }}
+          href="/Manav_khandelwal.pdf"
+          target="_blank"
+          className="
+            px-7 py-3 rounded-xl font-semibold 
+            bg-gradient-to-r from-purple-500 to-indigo-500 
+            text-white shadow-lg
+            hover:from-purple-600 hover:to-indigo-600 
+            transition-all
+          "
+        >
+          Resume
+        </motion.a>
       </div>
 
       {/* Social Icons */}
       <div className="flex gap-6 text-3xl mt-12">
-        {[ 
+        {[
           { Icon: FaGithub, href: "https://github.com/manav-05-06" },
           { Icon: FaLinkedin, href: "https://www.linkedin.com/in/manav178892250/" },
           { Icon: FaEnvelope, href: "mailto:manavkhandelwal72@gmail.com" },
