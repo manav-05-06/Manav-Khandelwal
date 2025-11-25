@@ -9,8 +9,8 @@ const projects = [
       "A real-time text ↔ Morse code converter built with React.js and Tailwind CSS. Fast, clean UI with instant results and smooth animations. Fully responsive and deployed on Vercel.",
     repo: "https://github.com/manav-05-06/Code-Morse",
     live: "https://code-morse-me.vercel.app/",
-    image: "./image/MorseCode.png",       // ADD IMAGE
-    preview: "/projects/morse.gif"      // OPTIONAL GIF PREVIEW
+    image: "./image/MorseCode.png",
+    preview: "/projects/morse.gif"
   },
 
   {
@@ -26,9 +26,22 @@ const projects = [
     image: "./image/Chatji.png",
     preview: "/projects/chatji.gif"
   },
-
   {
     id: 3,
+    title: "Target Exports",
+    category: "React",
+    stack: ["React.js", "Tailwind CSS", "Framer Motion", "EmailJS"],
+    tags: ["Business", "Company Website", "Responsive"],
+    description:
+    "A modern and professional company website built for Target Exports with a sleek UI, smooth animations, responsive layout, and integrated contact functionality via EmailJS.",
+    repo: "https://github.com/manav-05-06/Target-Exports",
+    live: "https://target-exports.vercel.app/",
+    image: "./image/Target Exports.png",
+    preview: "/projects/target.gif" 
+  },
+
+  {
+    id: 4,
     title: "Random Photo Generator",
     category: "JavaScript",
     stack: ["HTML", "CSS", "JavaScript"],
@@ -42,7 +55,7 @@ const projects = [
   },
 
   {
-    id: 4,
+    id: 5,
     title: "Bubble Game",
     category: "Game",
     stack: ["HTML", "CSS", "JavaScript"],
@@ -56,7 +69,7 @@ const projects = [
   },
 
   {
-    id: 5,
+    id: 6,
     title: "Random Emoji Generator",
     category: "JavaScript",
     stack: ["HTML", "CSS", "JavaScript"],

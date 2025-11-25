@@ -15,7 +15,7 @@ function About() {
         className="
           text-4xl md:text-5xl font-bold mb-8 
           text-gray-900 dark:text-gray-100
-          relative inline-block
+          relative inline-block font-light
         "
       >
         About Me
