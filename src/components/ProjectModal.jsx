@@ -1,7 +1,6 @@
-// ProjectModal.jsx
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { FaGithub, FaExternalLinkAlt, FaTimes } from "react-icons/fa";
 
 export default function ProjectModal({ project, close }) {
   const panelRef = useRef(null);
@@ -13,18 +12,13 @@ export default function ProjectModal({ project, close }) {
     closeBtnRef.current?.focus();
 
     const handleKeyDown = (e) => {
-      if (e.key === "Escape") {
-        close();
-        return;
-      }
+      if (e.key === "Escape") close();
       if (e.key !== "Tab" || !panelRef.current) return;
-
       const focusable = panelRef.current.querySelectorAll(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
       );
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
-
       if (e.shiftKey) {
         if (document.activeElement === first) {
           e.preventDefault();
@@ -48,6 +42,8 @@ export default function ProjectModal({ project, close }) {
 
   if (!project) return null;
 
+  const hasLive = project.live || project.repo;
+
   return (
     <motion.div
       role="dialog"
@@ -55,96 +51,72 @@ export default function ProjectModal({ project, close }) {
       aria-labelledby="project-modal-title"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="
-        fixed inset-0 bg-black/60 backdrop-blur-md 
-        flex items-center justify-center p-4 z-50
-      "
-      onClick={close}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex flex-col bg-black"
     >
-      <motion.div
-        ref={panelRef}
-        initial={{ scale: 0.9, opacity: 0, y: 40 }}
-        animate={{ scale: 1, opacity: 1, y: 0 }}
-        transition={{ duration: 0.25 }}
-        onClick={(e) => e.stopPropagation()}
-        className="
-          relative bg-white/10 dark:bg-gray-900/60 
-          backdrop-blur-xl border border-white/20 dark:border-white/10
-          rounded-2xl p-6 max-w-xl w-full shadow-xl
-        "
-      >
-        {/* Close Button */}
-        <button
-          ref={closeBtnRef}
-          type="button"
-          onClick={close}
-          aria-label="Close project details"
-          className="
-            absolute top-3 right-4 text-gray-300 
-            hover:text-white text-xl
-            focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent rounded
-          "
-        >
-          ✕
-        </button>
-
-        {/* Project Image */}
-        <img
-          src={project.image}
-          alt={`${project.title} screenshot`}
-          className="rounded-xl w-full mb-4 shadow-md"
+      {/* Full-screen: iframe when live URL exists, else placeholder */}
+      {hasLive ? (
+        <iframe
+          src={project.live || project.repo}
+          title={`${project.title} — full screen`}
+          className="absolute inset-0 w-full h-full border-0"
         />
+      ) : (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-900 p-8">
+          <div className="max-w-2xl text-center text-gray-300">
+            <img src={project.image} alt="" className="mx-auto rounded-xl shadow-xl mb-6 max-h-80 object-cover" />
+            <h2 className="text-2xl font-bold text-white mb-2">{project.title}</h2>
+            <p className="mb-4">{project.description}</p>
+            {project.repo && (
+              <a href={project.repo} target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:underline">
+                View on GitHub
+              </a>
+            )}
+          </div>
+        </div>
+      )}
 
-        {/* Title */}
-        <h2 id="project-modal-title" className="text-2xl font-bold text-white mb-4">
+      {/* Top bar: close + title + links */}
+      <div
+        ref={panelRef}
+        onClick={(e) => e.stopPropagation()}
+        className="absolute top-0 left-0 right-0 z-10 flex items-center justify-between gap-4 bg-black/80 backdrop-blur-md px-4 py-3 border-b border-white/10"
+      >
+        <h2 id="project-modal-title" className="text-white font-semibold truncate">
           {project.title}
         </h2>
-
-        {/* Tech Stack Chips */}
-        <div className="flex flex-wrap gap-2 mb-5">
-          {project.stack.map((tech, i) => (
-            <span
-              key={i}
-              className="
-                px-3 py-1 rounded-full bg-blue-500/20 
-                border border-blue-400/40 text-blue-300 text-sm
-              "
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-
-        {/* Description */}
-        <p className="text-gray-300 mb-6 leading-relaxed">
-          {project.description}
-        </p>
-
-        {/* Repo + Live Links */}
-        <div className="flex gap-6 text-lg">
+        <div className="flex items-center gap-2 shrink-0">
           {project.repo && (
             <a
               href={project.repo}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-blue-400 hover:text-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded"
+              className="flex items-center gap-1.5 rounded-lg bg-white/10 px-3 py-2 text-sm text-white hover:bg-white/20 transition-colors"
             >
-              <FaGithub aria-hidden /> GitHub
+              <FaGithub size={16} /> GitHub
             </a>
           )}
-
           {project.live && (
             <a
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-purple-400 hover:text-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-400 rounded"
+              className="flex items-center gap-1.5 rounded-lg bg-indigo-500/80 px-3 py-2 text-sm text-white hover:bg-indigo-500 transition-colors"
             >
-              <FaExternalLinkAlt aria-hidden /> Live Demo
+              <FaExternalLinkAlt size={14} /> Open in new tab
             </a>
           )}
+          <button
+            ref={closeBtnRef}
+            type="button"
+            onClick={close}
+            aria-label="Close"
+            className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
+          >
+            <FaTimes size={20} />
+          </button>
         </div>
-      </motion.div>
+      </div>
     </motion.div>
   );
 }

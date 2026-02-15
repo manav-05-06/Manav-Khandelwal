@@ -1,5 +1,32 @@
 const projects = [
   {
+    id: 7,
+    title: "Evoneural.ai",
+    category: "AI",
+    stack: ["React.js", "Node.js", "Tailwind CSS", "AI/ML"],
+    tags: ["AI", "Neural", "SaaS"],
+    description:
+      "Evoneural.ai — AI-powered platform for neural and intelligent automation. Modern dashboard, clean UI, and scalable architecture.",
+    repo: "https://github.com/manav-05-06/evoneural-ai",
+    live: "https://evoneural.ai",
+    image: "/image/Evoneural.png",
+    preview: "/projects/evoneural.gif"
+  },
+
+  {
+    id: 8,
+    title: "LearnXR",
+    category: "React",
+    stack: ["React.js", "Three.js", "WebXR", "Tailwind CSS"],
+    tags: ["XR", "Learning", "Immersive"],
+    description:
+      "LearnXR — immersive learning platform for XR (VR/AR). Interactive modules, 3D experiences, and accessible web-based XR education.",
+    repo: "https://github.com/manav-05-06/learnxr",
+    live: "https://learnxr.vercel.app",
+    image: "/image/LearnXR.png",
+    preview: "/projects/learnxr.gif"
+  },
+  {
     id: 1,
     title: "MorseCode",
     category: "React",
