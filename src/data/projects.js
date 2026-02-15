@@ -3,26 +3,28 @@ const projects = [
     id: 7,
     title: "Evoneural.ai",
     category: "AI",
-    stack: ["React.js", "Node.js", "Tailwind CSS", "AI/ML"],
-    tags: ["AI", "Neural", "SaaS"],
+    stack: ["React.js", "Node.js", "Tailwind CSS", "AI/ML", "3D Model","Firebase","RazorPay"],
+    tags: ["AI", "In3D.ai", "SaaS", "3D Generation"],
     description:
-      "Evoneural.ai — AI-powered platform for neural and intelligent automation. Modern dashboard, clean UI, and scalable architecture.",
+      "In3D.ai powered by Evoneural AI — AI-powered 3D environment generation. Transform text prompts into cinematic 3D assets with neural networks. Export to FBX, OBJ, GLTF; multiple styles (animation, gaming, comics, VFX). Built for game dev, AR/VR, and immersive experiences.",
     repo: "https://github.com/manav-05-06/evoneural-ai",
-    live: "https://evoneural.ai",
+    live: "https://evoneural.ai/",
     image: "/image/Evoneural.png",
-    preview: "/projects/evoneural.gif"
+    preview: "/projects/evoneural.gif",
+    preferImage: true,
+    openInNewTab: true,
   },
 
   {
     id: 8,
     title: "LearnXR",
     category: "React",
-    stack: ["React.js", "Three.js", "WebXR", "Tailwind CSS"],
-    tags: ["XR", "Learning", "Immersive"],
+    stack: ["React.js", "WebXR", "VR/AR", "Tailwind CSS", "Immersive Learning","Firebase"],
+    tags: ["XR", "EdTech", "VR", "K-12", "Altie Reality"],
     description:
-      "LearnXR — immersive learning platform for XR (VR/AR). Interactive modules, 3D experiences, and accessible web-based XR education.",
+      "LearnXR by Altie Reality — redefining learning with XR + AI. K-12 STEM lessons, humanities, virtual field trips, and immersive VR experiences for schools and individuals. Funded by Meta XR Startup Program. Used by schools and parents for engaging, retention-focused education.",
     repo: "https://github.com/manav-05-06/learnxr",
-    live: "https://learnxr.vercel.app",
+    live: "https://learnxr.altiereality.com",
     image: "/image/LearnXR.png",
     preview: "/projects/learnxr.gif"
   },

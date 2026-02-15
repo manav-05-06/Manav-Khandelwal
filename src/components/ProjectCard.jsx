@@ -22,6 +22,7 @@ const DESKTOP_HEIGHT = 800;
 export default function ProjectCard({ project, openModal, index }) {
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [scale, setScale] = useState(0.2);
+  const [imageError, setImageError] = useState(false);
   const cardRef = useRef(null);
   const previewRef = useRef(null);
   const inView = useInView(cardRef);
@@ -48,22 +49,35 @@ export default function ProjectCard({ project, openModal, index }) {
   }, [inView]);
 
   const useLivePreview = project.live && !project.preferImage;
-  const fallbackSrc = project.preview || project.image;
+  // When preferImage (e.g. Evoneural), use screenshot only so we don't try missing preview GIF first
+  const fallbackSrc = project.preferImage ? project.image : (project.preview || project.image);
   const scaledW = DESKTOP_WIDTH * scale;
   const scaledH = DESKTOP_HEIGHT * scale;
+  // When fallback image fails (missing file), prefer live iframe if available
+  const showLiveIframe = useLivePreview && (inView || imageError);
 
   return (
-    <motion.div ref={cardRef} style={{ y: parallax }}>
+    <motion.div ref={cardRef} style={{ y: parallax }} className="w-full h-full flex">
       <motion.div
         role="button"
         tabIndex={0}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
+            if (project.openInNewTab && project.live) {
+              window.open(project.live, "_blank", "noopener,noreferrer");
+            } else {
+              openModal(project);
+            }
+          }
+        }}
+        onClick={() => {
+          if (project.openInNewTab && project.live) {
+            window.open(project.live, "_blank", "noopener,noreferrer");
+          } else {
             openModal(project);
           }
         }}
-        onClick={() => openModal(project)}
         onMouseMove={(e) => {
           const rect = e.currentTarget.getBoundingClientRect();
           setCursor({
@@ -77,7 +91,7 @@ export default function ProjectCard({ project, openModal, index }) {
           bg-white/10 dark:bg-white/5 backdrop-blur-xl
           border border-white/10 dark:border-white/5
           shadow-lg hover:shadow-xl transition-all duration-300
-          flex flex-col h-full
+          flex flex-col h-full w-full min-h-[380px] sm:min-h-[400px]
           focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 dark:focus:ring-offset-gray-900
         "
       >
@@ -105,7 +119,7 @@ export default function ProjectCard({ project, openModal, index }) {
           ref={previewRef}
           className="relative w-full overflow-hidden rounded-lg sm:rounded-xl mb-3 sm:mb-4 shadow-md bg-gray-100 dark:bg-gray-800 flex items-center justify-center min-h-[120px] h-32 sm:h-40 md:h-44 lg:h-48"
         >
-          {useLivePreview && inView ? (
+          {showLiveIframe ? (
             <>
               <div
                 className="absolute rounded-lg sm:rounded-xl overflow-hidden pointer-events-none"
@@ -131,14 +145,25 @@ export default function ProjectCard({ project, openModal, index }) {
               <div className="absolute inset-0 rounded-lg sm:rounded-xl bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
             </>
           ) : (
-            <motion.img
-              src={fallbackSrc}
-              alt={project.title}
-              initial={{ scale: 1 }}
-              whileHover={{ scale: 1.05, y: -3 }}
-              transition={{ duration: 0.3 }}
-              className="h-full w-full object-cover rounded-lg sm:rounded-xl"
-            />
+            <>
+              <motion.img
+                src={fallbackSrc}
+                alt={project.title}
+                initial={{ scale: 1 }}
+                whileHover={{ scale: 1.05, y: -3 }}
+                transition={{ duration: 0.3 }}
+                className={`h-full w-full object-cover rounded-lg sm:rounded-xl ${imageError ? "hidden" : ""}`}
+                onError={() => setImageError(true)}
+              />
+              {imageError && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 rounded-lg sm:rounded-xl bg-gradient-to-br from-indigo-500/20 to-violet-500/20 dark:from-indigo-600/30 dark:to-violet-600/30 border border-indigo-200/50 dark:border-indigo-500/30">
+                  <span className="text-sm font-semibold text-gray-800 dark:text-gray-200">{project.title}</span>
+                  {project.live && (
+                    <span className="text-xs text-indigo-600 dark:text-indigo-400">Click to open live site</span>
+                  )}
+                </div>
+              )}
+            </>
           )}
         </div>
 

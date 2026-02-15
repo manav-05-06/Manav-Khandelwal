@@ -61,12 +61,12 @@ export default function Projects() {
         })}
       </div>
 
-      {/* Projects Grid */}
+      {/* Projects Grid — items-stretch so cards in a row share the same height */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.4 }}
-        className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 place-items-center"
+        className="grid gap-6 sm:gap-8 lg:gap-10 sm:grid-cols-2 lg:grid-cols-3 items-stretch"
       >
         {filteredProjects.map((project, idx) => (
           <ProjectCard
