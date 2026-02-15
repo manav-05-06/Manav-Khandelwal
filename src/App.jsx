@@ -33,36 +33,8 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ⭐ Page scroll progress bar
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const handleProgress = () => {
-      const totalHeight =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight;
-
-      setScrollProgress((window.scrollY / totalHeight) * 100);
-    };
-
-    window.addEventListener("scroll", handleProgress);
-    return () => window.removeEventListener("scroll", handleProgress);
-  }, []);
-
   return (
-    <div className="min-h-screen font-sans text-gray-900 dark:text-gray-100 transition-colors duration-300">
-
-      {/* ⭐ Vertical Scroll Progress Bar */}
-      <div
-        className="fixed right-5 top-1/2 -translate-y-1/2 w-1 rounded-full 
-        bg-gray-400/20 dark:bg-white/10 h-[60vh] overflow-hidden z-[999]"
-      >
-        <div
-          style={{ height: `${scrollProgress}%` }}
-          className="w-full bg-gradient-to-b from-blue-500 via-indigo-500 to-violet-500 
-          transition-all duration-200"
-        ></div>
-      </div>
+    <div className="min-h-screen font-sans text-foreground antialiased">
 
       <AnimatedCursor />
       <ScrollSpy />
