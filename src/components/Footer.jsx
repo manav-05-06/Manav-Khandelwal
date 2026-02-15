@@ -20,7 +20,7 @@ export default function Footer() {
       className="
         w-full relative overflow-hidden
         pt-32 pb-24 px-6
-        bg-transparent text-white
+        bg-gray-900 dark:bg-[#0a0a0a] text-white
       "
     >
       {/* Noise Texture */}
@@ -116,15 +116,17 @@ export default function Footer() {
 
             <div className="flex gap-3">
               {[
-                { Icon: FaLinkedin, link: "https://www.linkedin.com/in/manav178892250/" },
-                { Icon: FaGithub, link: "https://github.com/manav-05-06" },
-                { Icon: FaEnvelope, link: "mailto:manavkhandelwal72@gmail.com" },
-              ].map(({ Icon, link }, i) => (
+                { Icon: FaLinkedin, link: "https://www.linkedin.com/in/manav178892250/", label: "LinkedIn" },
+                { Icon: FaGithub, link: "https://github.com/manav-05-06", label: "GitHub" },
+                { Icon: FaEnvelope, link: "mailto:manavkhandelwal72@gmail.com", label: "Email" },
+              ].map(({ Icon, link, label }, i) => (
                 <motion.a
                   key={i}
                   href={link}
                   whileHover={{ scale: 1.12 }}
                   target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
                   className="
                     w-10 h-10 rounded-full flex items-center justify-center
                     bg-white/90 dark:bg-white/80 text-black

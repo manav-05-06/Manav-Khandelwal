@@ -23,12 +23,18 @@ export default function Projects() {
     >
       {/* Heading */}
       <motion.h2
-        initial={{ opacity: 0, y: -10 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, x: -25 }}
+        whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
-        className="text-4xl font-bold mb-14  underline decoration-blue-500 underline-offset-8"
+        viewport={{ once: true }}
+        className="
+          text-4xl md:text-5xl font-bold mb-14
+          text-gray-900 dark:text-gray-100
+          relative inline-block
+        "
       >
         Projects
+        <span className="absolute left-0 -bottom-3 w-28 h-[3px] rounded-full bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500" />
       </motion.h2>
 
       {/* Category Filters */}
@@ -38,8 +44,10 @@ export default function Projects() {
           return (
             <button
               key={cat}
+              type="button"
               onClick={() => setFilter(cat)}
               className={`px-5 py-2 rounded-full border text-sm font-semibold transition-all
+                focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 dark:focus:ring-offset-gray-900
                 ${
                   active
                     ? "bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-400/30"

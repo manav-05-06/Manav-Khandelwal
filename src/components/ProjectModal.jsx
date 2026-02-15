@@ -1,12 +1,58 @@
 // ProjectModal.jsx
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 export default function ProjectModal({ project, close }) {
+  const panelRef = useRef(null);
+  const closeBtnRef = useRef(null);
+
+  useEffect(() => {
+    if (!project) return;
+
+    closeBtnRef.current?.focus();
+
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        close();
+        return;
+      }
+      if (e.key !== "Tab" || !panelRef.current) return;
+
+      const focusable = panelRef.current.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last?.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first?.focus();
+        }
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [project, close]);
+
   if (!project) return null;
 
   return (
     <motion.div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="project-modal-title"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className="
@@ -16,6 +62,7 @@ export default function ProjectModal({ project, close }) {
       onClick={close}
     >
       <motion.div
+        ref={panelRef}
         initial={{ scale: 0.9, opacity: 0, y: 40 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
         transition={{ duration: 0.25 }}
@@ -28,10 +75,14 @@ export default function ProjectModal({ project, close }) {
       >
         {/* Close Button */}
         <button
+          ref={closeBtnRef}
+          type="button"
           onClick={close}
+          aria-label="Close project details"
           className="
             absolute top-3 right-4 text-gray-300 
             hover:text-white text-xl
+            focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent rounded
           "
         >
           ✕
@@ -40,12 +91,12 @@ export default function ProjectModal({ project, close }) {
         {/* Project Image */}
         <img
           src={project.image}
-          alt={project.title}
+          alt={`${project.title} screenshot`}
           className="rounded-xl w-full mb-4 shadow-md"
         />
 
         {/* Title */}
-        <h2 className="text-2xl font-bold text-white mb-4">
+        <h2 id="project-modal-title" className="text-2xl font-bold text-white mb-4">
           {project.title}
         </h2>
 
@@ -75,9 +126,10 @@ export default function ProjectModal({ project, close }) {
             <a
               href={project.repo}
               target="_blank"
-              className="flex items-center gap-2 text-blue-400 hover:text-blue-200"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-blue-400 hover:text-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded"
             >
-              <FaGithub /> GitHub
+              <FaGithub aria-hidden /> GitHub
             </a>
           )}
 
@@ -85,13 +137,13 @@ export default function ProjectModal({ project, close }) {
             <a
               href={project.live}
               target="_blank"
-              className="flex items-center gap-2 text-purple-400 hover:text-purple-200"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-purple-400 hover:text-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-400 rounded"
             >
-              <FaExternalLinkAlt /> Live Demo
+              <FaExternalLinkAlt aria-hidden /> Live Demo
             </a>
           )}
         </div>
-
       </motion.div>
     </motion.div>
   );

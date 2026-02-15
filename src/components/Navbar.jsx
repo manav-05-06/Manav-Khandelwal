@@ -46,13 +46,13 @@ function Navbar() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="flex items-center gap-7 ml-4 z-10"
+            className="flex items-center gap-5 ml-4 z-10"
           >
-            {["Projects", "Skills", "About"].map((link) => (
+            {["About", "Skills", "Projects"].map((link) => (
               <a
                 key={link}
                 href={`#${link.toLowerCase()}`}
-                className="text-gray-900 dark:text-gray-200 hover:text-indigo-400 transition"
+                className="text-gray-900 dark:text-gray-200 hover:text-indigo-400 transition focus:outline-none focus:ring-2 focus:ring-indigo-400/50 focus:ring-offset-2 rounded"
               >
                 {link}
               </a>
@@ -66,7 +66,7 @@ function Navbar() {
                 border border-white/40 dark:border-white/20
                 shadow-md
                 hover:bg-white/50 dark:hover:bg-white/20
-                transition
+                transition focus:outline-none focus:ring-2 focus:ring-indigo-400/50 focus:ring-offset-2
               "
             >
               Contact
@@ -115,7 +115,7 @@ function Navbar() {
           </p>
 
           {/* 3 Dots */}
-          <button onClick={toggleMenu} className="flex gap-1 ml-auto z-10">
+          <button onClick={toggleMenu} aria-label="Open menu" className="flex gap-1 ml-auto z-10">
             <span className="w-2 h-2 rounded-full bg-gray-700 dark:bg-gray-300 shadow-[0_0_6px_rgba(100,100,255,0.5)]" />
             <span className="w-2 h-2 rounded-full bg-gray-700 dark:bg-gray-300 shadow-[0_0_6px_rgba(100,100,255,0.5)]" />
             <span className="w-2 h-2 rounded-full bg-gray-700 dark:bg-gray-300 shadow-[0_0_6px_rgba(100,100,255,0.5)]" />
@@ -158,7 +158,7 @@ function Navbar() {
               </p>
 
               {/* Close Button */}
-              <button onClick={toggleMenu}>
+              <button onClick={toggleMenu} aria-label="Close menu">
                 <span className="text-2xl text-gray-900 dark:text-gray-200">
                   ×
                 </span>

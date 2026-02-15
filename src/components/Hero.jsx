@@ -145,15 +145,17 @@ function Hero() {
         className="flex gap-6 text-3xl mt-12"
       >
         {[
-          { Icon: FaGithub, href: "https://github.com/manav-05-06" },
-          { Icon: FaLinkedin, href: "https://www.linkedin.com/in/manav178892250/" },
-          { Icon: FaEnvelope, href: "mailto:manavkhandelwal72@gmail.com" },
-        ].map(({ Icon, href }, idx) => (
+          { Icon: FaGithub, href: "https://github.com/manav-05-06", label: "GitHub profile" },
+          { Icon: FaLinkedin, href: "https://www.linkedin.com/in/manav178892250/", label: "LinkedIn profile" },
+          { Icon: FaEnvelope, href: "mailto:manavkhandelwal72@gmail.com", label: "Email me" },
+        ].map(({ Icon, href, label }, idx) => (
           <motion.a
             whileHover={{ scale: 1.18 }}
             key={idx}
             href={href}
             target="_blank"
+            rel="noopener noreferrer"
+            aria-label={label}
             className="
               p-3 rounded-full
               bg-white/10 dark:bg-white/10

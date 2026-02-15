@@ -12,12 +12,21 @@ export default function ProjectCard({ project, openModal, index }) {
   return (
     <motion.div style={{ y: parallax }}>
       <motion.div
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openModal(project);
+          }
+        }}
         className="
           group relative p-5 rounded-2xl cursor-pointer overflow-hidden
           bg-white/10 dark:bg-white/5 backdrop-blur-xl
           border border-white/10 dark:border-white/5
           shadow-lg hover:shadow-xl transition-all duration-300
           flex flex-col h-full
+          focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 dark:focus:ring-offset-gray-900
         "
         onMouseMove={(e) => {
           const rect = e.currentTarget.getBoundingClientRect();

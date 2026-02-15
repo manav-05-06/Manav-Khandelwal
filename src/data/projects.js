@@ -9,7 +9,7 @@ const projects = [
       "A real-time text ↔ Morse code converter built with React.js and Tailwind CSS. Fast, clean UI with instant results and smooth animations. Fully responsive and deployed on Vercel.",
     repo: "https://github.com/manav-05-06/Code-Morse",
     live: "https://code-morse-me.vercel.app/",
-    image: "./image/MorseCode.png",
+    image: "/image/MorseCode.png",
     preview: "/projects/morse.gif"
   },
 
@@ -23,7 +23,7 @@ const projects = [
       "AI-powered chatbot built using React.js & Node.js with Gemini API. Includes chat history, formatting, authentication, and fast streaming responses.",
     repo: "https://github.com/manav-05-06/ChatJi",
     live: "https://chat-ji.vercel.app/",
-    image: "./image/Chatji.png",
+    image: "/image/Chatji.png",
     preview: "/projects/chatji.gif"
   },
   {
@@ -36,7 +36,7 @@ const projects = [
     "A modern and professional company website built for Target Exports with a sleek UI, smooth animations, responsive layout, and integrated contact functionality via EmailJS.",
     repo: "https://github.com/manav-05-06/Target-Exports",
     live: "https://target-exports.vercel.app/",
-    image: "./image/Target Exports.png",
+    image: "/image/Target Exports.png",
     preview: "/projects/target.gif" 
   },
 
@@ -50,7 +50,7 @@ const projects = [
       "A simple app that fetches high-quality random photos from the Unsplash API. Clean UI, smooth fade animations, and instant refresh.",
     repo: "https://github.com/manav-05-06/Random-photos-generator",
     live: "https://random-photos-generator-two.vercel.app/",
-    image: "./image/Random image Generator.png",
+    image: "/image/Random image Generator.png",
     preview: "/projects/photo.gif"
   },
 
@@ -64,7 +64,7 @@ const projects = [
       "A fast-paced bubble popping game where players score by clicking the correct numbered bubble. Includes timer, score, difficulty, and effects.",
     repo: "https://github.com/manav-05-06/Bubble-game",
     live: "https://manav-05-06.github.io/Bubble-game/",
-    image: "./image/Bubble Game.png",
+    image: "/image/Bubble Game.png",
     preview: "/projects/bubble.gif"
   },
 
@@ -78,7 +78,7 @@ const projects = [
       "A fun tool that generates random emojis. Includes hover animation, simple UI, and instant emoji output. Deployed using Vercel.",
     repo: "https://github.com/manav-05-06/Random-Emoji-Generator",
     live: "https://random-emoji-generator-drab.vercel.app/",
-    image: "./image/Emoji Generator.png",
+    image: "/image/Emoji Generator.png",
     preview: "/projects/emoji.gif"
   }
 ];

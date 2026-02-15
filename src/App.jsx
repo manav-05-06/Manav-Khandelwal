@@ -50,7 +50,7 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen font-serif text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <div className="min-h-screen font-sans text-gray-900 dark:text-gray-100 transition-colors duration-300">
 
       {/* ⭐ Vertical Scroll Progress Bar */}
       <div
@@ -68,7 +68,7 @@ function App() {
       <ScrollSpy />
 
       {/* ⭐ Navbar */}
-      <Navbar dark={darkMode} setDark={setDarkMode} />
+      <Navbar />
 
       {/* ⭐ Main Sections */}
       <main>
